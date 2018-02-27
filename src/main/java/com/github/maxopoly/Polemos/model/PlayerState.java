@@ -1,4 +1,4 @@
-package com.github.maxopoly.Polemos;
+package com.github.maxopoly.Polemos.model;
 
 import java.util.HashSet;
 import java.util.Set;

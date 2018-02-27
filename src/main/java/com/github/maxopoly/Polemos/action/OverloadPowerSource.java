@@ -2,9 +2,9 @@ package com.github.maxopoly.Polemos.action;
 
 import com.github.maxopoly.Polemos.model.PlayerState;
 
-public class PearlThrowAction extends AbstractAction {
+public class OverloadPowerSource extends AbstractAction {
 
-	public PearlThrowAction(long time, PlayerState mainPlayer) {
+	public OverloadPowerSource(long time, PlayerState mainPlayer) {
 		super(time, mainPlayer);
 	}
 

@@ -1,4 +1,9 @@
-package com.github.maxopoly.Polemos;
+package com.github.maxopoly.Polemos.model;
+
+import com.github.maxopoly.Polemos.model.Potion.PotionType;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class PlayerStats {
 
@@ -11,6 +16,7 @@ public class PlayerStats {
 	private int hitsTaken;
 	private int deaths;
 	private int kills;
+	private int assists;
 	private double damageDealt;
 	private double damageTaken;
 	private int spamHitsDealt;
@@ -19,14 +25,17 @@ public class PlayerStats {
 	private int spamHitsTaken;
 	private int normalHitsTaken;
 	private int critHitsTaken;
-	private int buffsUsed;
-	private int splashHealthUsed;
+	private Map<Potion, Integer> potsUsed;
 	private double healthFromSplash;
 	private int pearlsThrown;
-
+	private int ancientIngotsUsed;
+	private Map<String, Integer> foodEaten;
+	private UUID uuid;
 
 	public PlayerStats(String name) {
 		this.name = name;
+		this.potsUsed = new HashMap<Potion, Integer>();
+		this.foodEaten = new HashMap<String, Integer>();
 	}
 
 	public int getHitsDealt() {
@@ -45,8 +54,28 @@ public class PlayerStats {
 		return deaths;
 	}
 
+	public int getAssists() {
+		return assists;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public UUID getUUID() {
+		return uuid;
+	}
+
+	public void setUUID(UUID uuid) {
+		this.uuid = uuid;
+	}
+
+	public int getAncientIngotsUsed() {
+		return ancientIngotsUsed;
+	}
+
+	public Map<String, Integer> getFoodEaten() {
+		return new HashMap<String, Integer>(foodEaten);
 	}
 
 	public double getDamageDealtToTakenRatio() {
@@ -69,17 +98,35 @@ public class PlayerStats {
 		return hitsTaken != 0 ? damageTaken / (hitsTaken) : 0.0;
 	}
 
+	public void addPotConsumed(Potion pot) {
+		Integer count = potsUsed.get(pot);
+		if (count == null) {
+			count = 0;
+		}
+		potsUsed.put(pot, ++count);
+	}
+
+	public void addFoodEaten(String name) {
+		Integer count = foodEaten.get(name);
+		if (count == null) {
+			count = 0;
+		}
+		foodEaten.put(name, ++count);
+	}
+
+	public void addAncientIngotUsed() {
+		ancientIngotsUsed++;
+	}
+
 	public void addDamageDealt(double damage) {
 		this.damageDealt += damage;
 		hitsDealt++;
 		if (damage < spamClickThreshHold) {
 			spamHitsDealt++;
-		}
-		else {
+		} else {
 			if (damage < critClickThreshHold) {
 				normalHitsDealt++;
-			}
-			else {
+			} else {
 				critHitsDealt++;
 			}
 		}
@@ -90,12 +137,10 @@ public class PlayerStats {
 		hitsTaken++;
 		if (damage < spamClickThreshHold) {
 			spamHitsTaken++;
-		}
-		else {
+		} else {
 			if (damage < critClickThreshHold) {
 				normalHitsTaken++;
-			}
-			else {
+			} else {
 				critHitsTaken++;
 			}
 		}
@@ -117,24 +162,8 @@ public class PlayerStats {
 		pearlsThrown++;
 	}
 
-	public void addBuffUsed() {
-		buffsUsed++;
-	}
-
-	public void addSplashHealthUsed() {
-		splashHealthUsed++;
-	}
-
 	public void addHealFromSplashHealth(double heal) {
 		healthFromSplash += heal;
-	}
-
-	public int getBuffsUsed() {
-		return buffsUsed;
-	}
-
-	public int getSplashHealthUsed() {
-		return splashHealthUsed;
 	}
 
 	public double getHealFromSplashHealth() {
@@ -172,11 +201,27 @@ public class PlayerStats {
 		return critHitsDealt / ((double) critHitsDealt + (double) normalHitsDealt);
 	}
 
+	public int getPotionsUsed(Potion type) {
+		Integer count = potsUsed.get(type);
+		if (count == null) {
+			return 0;
+		}
+		return count;
+	}
+
+	public Map<Potion, Integer> getPotionsUsed() {
+		return new HashMap<Potion, Integer>(potsUsed);
+	}
+
+	public int getSplashHealthUsed() {
+		return getPotionsUsed(new Potion(2, PotionType.HEALING, true));
+	}
+
 	public double getSplashHealEffectiveness() {
-		if (splashHealthUsed == 0) {
+		if (getSplashHealthUsed() == 0) {
 			return 0.0;
 		}
-		return healthFromSplash / (splashHealthUsed * maxHealPerSplashHealth);
+		return healthFromSplash / (getSplashHealthUsed() * maxHealPerSplashHealth);
 	}
 
 }

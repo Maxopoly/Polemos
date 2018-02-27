@@ -1,0 +1,88 @@
+body {
+    background-color: #efffff;
+}
+
+h1 {
+    margin-left: 20px;
+}
+
+.player-element-attacker {
+    border-bottom: 1px solid #333;
+    overflow: auto;
+    background-color: #ffcccc;
+}
+
+.player-element-defender {  
+    border-bottom: 1px solid #333;
+    overflow: auto;
+    background-color: #ccffe6;
+}
+
+.player-element-avatar {
+    float: left;
+}
+
+.player-element-avatar img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    vertical-align: top;
+}
+
+.player-element-banner {
+    float: left;
+}
+
+.player-element-banner img {
+    display: block;
+    width: 20px;
+    height: 40px;
+    vertical-align: middle;
+    margin-left: 10px
+}
+
+.player-element-name {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.player-element-kda {
+    margin-left: 10px
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+}
+
+.player-element-text {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.player-element-content {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.player-element-content2 {
+    margin-left: 50px;
+    display: inline-block;
+}
+
+.player-element-inline {
+    display: inline-block;
+    line-height: 40px;
+}
+
+.inline-image img {
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+}
+
+.inline-image-high img {
+    vertical-align: middle;
+    width: 15px;
+    height: 30px;
+}

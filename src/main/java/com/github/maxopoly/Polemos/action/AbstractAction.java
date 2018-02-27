@@ -1,6 +1,6 @@
 package com.github.maxopoly.Polemos.action;
 
-import com.github.maxopoly.Polemos.PlayerState;
+import com.github.maxopoly.Polemos.model.PlayerState;
 
 public abstract class AbstractAction {
 

@@ -42,6 +42,10 @@ public class Potion {
 		return type;
 	}
 
+	public String getImagePath() {
+		return "";
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (!(o instanceof Potion)) {

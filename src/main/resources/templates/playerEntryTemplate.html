@@ -1,33 +1,36 @@
-<div id="ENTRY_IDENTIFIER" class="player-element-GROUP_ALIGNMENT">
-   <div class="player-element-content">
-      <!-- Avatar to the left -->
-      <div class="player-element-avatar"><img src="data:image/png;base64,AVATAR_BASE64"/></div>
-      <!-- Banner -->
+<div id="ENTRY_IDENTIFIER-WHAT_KIND_IS_THIS" class="player-element-GROUP_ALIGNMENT">
+   <div class="player-element-content-images">
+      <div class="player-element-avatar"><img src="AVATAR_BASE64"/></div>
       <div class="player-element-banner">
-         <img src="data:image/png;base64,BANNER_BASE64">
+         <img src="BANNER_BASE64">
       </div>
    </div>
-   <div class="player-element-content">
-      <!-- PlayerName -->
+   <div class="player-element-content-first">
       <span class="player-element-name">PLAYER_NAME</span>
       <br>
-      <!-- Second line -->
       <div class="player-element-kda"> 
       <span class="inline-image"> 
-      <img src="data:image/png;base64,SKULL_IMAGE"/> 
-      </span>KILL_COUNT / DEATH_COUNT / ASSIST_COUNT</div>
+      <img src="SKULL_IMAGE"/> 
+      </span>
+      <span class="kda-hover" title="KILL_HOVER_TEXT"> KILL_COUNT </span>/
+      <span class="kda-hover" title="DEATH_HOVER_TEXT"> DEATH_COUNT </span>/
+      <span class="kda-hover" title="ASSIST_HOVER_TEXT"> ASSIST_COUNT </span>
+      </div>
+      <div class="player-element-mvp"> 
+       <span class="inline-image"> 
+      <img src="MVP_IMAGE"/> 
+      </span>
+      MVP_POINTS
+      </div>
    </div>
-   <!-- Damage done pane-->
-   <div class="player-element-content2">
+   <div class="player-element-content-second">
       <div class="player-element-inline">
-         <!-- Diamond sword icon-->
          <span class="inline-image"> 
-         <img src="data:image/png;base64,DIAMOND_SWORD_IMAGE" width="12">
+         <img src="DIAMOND_SWORD_IMAGE">
          </span>
          <br>
-          <!-- Shield icon-->
          <span class="inline-image-high"> 
-         <img src="data:image/png;base64,SHIELD_IMAGE" >
+         <img src="SHIELD_IMAGE" >
          </span>
       </div>
       <div class="player-element-inline">
@@ -36,4 +39,7 @@
          <span class="player-element-text">HIT_DAMAGE_TAKEN in HIT_COUNT_TAKEN hits &nbsp;&nbsp;(SPAMCLICK_TAKEN / NORMALCLICK_TAKEN / CRIT_TAKEN)<span>
       </div>
    </div>
+    <div class="player-element-content-items">
+      PLAYER_ITEMS_PLACEHOLDER
+    </div>
 </div>

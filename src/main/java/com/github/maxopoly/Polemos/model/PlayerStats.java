@@ -2,7 +2,9 @@ package com.github.maxopoly.Polemos.model;
 
 import com.github.maxopoly.Polemos.model.Potion.PotionType;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 public class PlayerStats {
@@ -31,11 +33,52 @@ public class PlayerStats {
 	private int ancientIngotsUsed;
 	private Map<String, Integer> foodEaten;
 	private UUID uuid;
+	private int mvpPoints;
+	private int golemsKilled;
+	private int pointsAchieved;
 
 	public PlayerStats(String name) {
+		if (name == null) {
+			throw new IllegalArgumentException("Name must not be null");
+		}
 		this.name = name;
 		this.potsUsed = new HashMap<Potion, Integer>();
 		this.foodEaten = new HashMap<String, Integer>();
+	}
+
+	/**
+	 * Adds all values of the given stat to this instance
+	 *
+	 * @param other
+	 *            Stats to add
+	 */
+	public void merge(PlayerStats other) {
+		hitsDealt += other.hitsDealt;
+		hitsTaken += other.hitsTaken;
+		deaths += other.deaths;
+		kills += other.kills;
+		assists += other.assists;
+		damageDealt += other.damageDealt;
+		damageTaken += other.damageTaken;
+		spamHitsDealt += other.spamHitsDealt;
+		normalHitsDealt += other.normalHitsDealt;
+		critHitsDealt += other.critHitsDealt;
+		spamHitsTaken += other.spamHitsTaken;
+		normalHitsTaken += other.normalHitsTaken;
+		critHitsTaken += other.critHitsTaken;
+		for (Entry<Potion, Integer> ent : other.potsUsed.entrySet()) {
+			for (int i = 0; i < ent.getValue(); i++) {
+				addPotConsumed(ent.getKey());
+			}
+		}
+		healthFromSplash += other.healthFromSplash;
+		pearlsThrown += other.pearlsThrown;
+		ancientIngotsUsed += other.ancientIngotsUsed;
+		for (Entry<String, Integer> ent : other.foodEaten.entrySet()) {
+			for (int i = 0; i < ent.getValue(); i++) {
+				addFoodEaten(ent.getKey());
+			}
+		}
 	}
 
 	public int getHitsDealt() {
@@ -68,6 +111,11 @@ public class PlayerStats {
 
 	public void setUUID(UUID uuid) {
 		this.uuid = uuid;
+	}
+
+	public int getMVPPoints() {
+		return 10000;
+		//return mvpPoints;
 	}
 
 	public int getAncientIngotsUsed() {
@@ -116,6 +164,22 @@ public class PlayerStats {
 
 	public void addAncientIngotUsed() {
 		ancientIngotsUsed++;
+	}
+
+	public int getGolemsKilled() {
+		return golemsKilled;
+	}
+
+	public void addGolemKill() {
+		golemsKilled++;
+	}
+
+	public int getPointsAchieved() {
+		return pointsAchieved;
+	}
+
+	public void addPointAchieved() {
+		pointsAchieved++;
 	}
 
 	public void addDamageDealt(double damage) {
@@ -170,6 +234,10 @@ public class PlayerStats {
 		return healthFromSplash;
 	}
 
+	public void addAssist() {
+		assists++;
+	}
+
 	public int getSpamHitsTaken() {
 		return spamHitsTaken;
 	}
@@ -222,6 +290,37 @@ public class PlayerStats {
 			return 0.0;
 		}
 		return healthFromSplash / (getSplashHealthUsed() * maxHealPerSplashHealth);
+	}
+
+	public static PlayerStats calculateAverage(String name, List <PlayerStats> stats) {
+		PlayerStats avg = new PlayerStats(name);
+		for(PlayerStats stat : stats) {
+			avg.merge(stat);
+		}
+		int amt = stats.size();
+		avg.hitsDealt /= amt;
+		avg.hitsTaken /= amt;
+		avg.deaths /= amt;
+		avg.kills /= amt;
+		avg.assists /= amt;
+		avg.damageDealt /= amt;
+		avg.damageTaken /= amt;
+		avg.spamHitsDealt /= amt;
+		avg.normalHitsDealt /= amt;
+		avg.critHitsDealt /= amt;
+		avg.spamHitsTaken /= amt;
+		avg.normalHitsTaken /= amt;
+		avg.critHitsTaken /= amt;
+		for (Entry<Potion, Integer> ent : avg.potsUsed.entrySet()) {
+			ent.setValue(ent.getValue() / amt);
+		}
+		avg.healthFromSplash /= amt;
+		avg.pearlsThrown /= amt;
+		avg.ancientIngotsUsed /= amt;
+		for (Entry<String, Integer> ent : avg.foodEaten.entrySet()) {
+			ent.setValue(ent.getValue() / amt);
+		}
+		return avg;
 	}
 
 }

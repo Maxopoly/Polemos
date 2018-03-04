@@ -3,11 +3,12 @@ package com.github.maxopoly.Polemos;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,15 +81,23 @@ public class FileUtil {
 	}
 
 	public static void saveToFile(File f, String s) {
-		BufferedWriter writer = null;
+		OutputStreamWriter writer;
 		try {
-			writer = new BufferedWriter(new FileWriter(f));
-			writer.write(s);
+			writer = new OutputStreamWriter(new FileOutputStream(f), StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		BufferedWriter buffWriter = null;
+		try {
+			buffWriter = new BufferedWriter(writer);
+			buffWriter.write(s);
 		} catch (IOException e) {
 		} finally {
 			try {
-				if (writer != null)
-					writer.close();
+				if (buffWriter != null)
+					buffWriter.close();
 			} catch (IOException e) {
 			}
 		}

@@ -71,7 +71,7 @@ public class LogAnalyzer {
 
 	private static final Pattern healRegex = Pattern.compile("([0-9]+\\.[0-9]+) health from ([A-z_]+)");
 
-	private static final Pattern locationRegex = Pattern.compile("Location: ([A-z]+)");
+	private static final Pattern locationRegex = Pattern.compile("Location: ([A-z ]+)");
 
 	private List<String> lines;
 	private List<AbstractAction> actions;

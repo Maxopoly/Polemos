@@ -20,6 +20,7 @@ public class PlayerState {
 		entities.add("Creeper");
 		entities.add("Endermite");
 		entities.add("Skeleton");
+		entities.add("Parrot");
 	}
 
 	public PlayerState(String name, float hp) {

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class BattleMetaData {
 
@@ -31,6 +32,36 @@ public class BattleMetaData {
 		else {
 			defenderGroups.add(name);
 		}
+	}
+
+	public int getPlayerCount(String group) {
+		int count = 0;
+		for(Entry<String, String> entry : playerToGroup.entrySet()) {
+			if (entry.getValue().equals(group)) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public int getAttackerCount() {
+		int count = 0;
+		for(Entry<String, String> entry : playerToGroup.entrySet()) {
+			if (attackerGroups.contains(entry.getValue())) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public int getDefenderCount() {
+		int count = 0;
+		for(Entry<String, String> entry : playerToGroup.entrySet()) {
+			if (defenderGroups.contains(entry.getValue())) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	public void setAttackersWon() {

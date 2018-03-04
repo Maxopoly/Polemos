@@ -27,7 +27,7 @@ public class Main {
 		DataAggregator aggregator = new DataAggregator(actions, analyzer.getMetaData());
 		String outPath = args [1];
 		File output = new File(outPath);
-		FileUtil.saveToFile(output,new HtmlGenerator(aggregator.getStats(), analyzer.getMetaData()).generate());
+		FileUtil.saveToFile(output,new HtmlGenerator(aggregator.getStats(), analyzer.getMetaData(), aggregator.getPlayerKills()).generate());
 	}
 
 }

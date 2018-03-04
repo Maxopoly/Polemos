@@ -1,20 +1,7 @@
-function orderSel(e) {
-  if (e.value === 'AN01') {
-    sortlist(0);
-  } else if (e.value === 'AN02') {
-    sortlist(1);
-  } else if (e.value === 'AN03') {
-    sortlist(2);
-  } else if (e.value === 'AN04') {
-    sortlist(3);
-  } else if (e.value === 'AN05') {
-    sortlist(4);
-  } else if (e.value === 'AN06') {
-    sortlist(5);
-  }
-}
+var sorting = 0;;
 
 function sortlist(offset) {
+  sorting = +offset;
   var toSort = document.getElementById('infoHolder').children;
   toSort = Array.prototype.slice.call(toSort, 0);
   toSort.sort(function(a, b) {
@@ -29,3 +16,29 @@ function sortlist(offset) {
     parent.appendChild(toSort[i]);
   }
 }
+
+function showOnlyType(typeToShow) {
+  var allEntries = document.getElementById('infoHolder').children;
+  for(var i = 0; i < allEntries.length; i++) {
+    var entry = allEntries [i];
+    if(entry.id.split('-')[8].localeCompare(typeToShow) == 0) {
+      entry.style.display = 'block';
+    }
+    else {
+      entry.style.display = 'none';
+    }
+  }
+}
+
+function hideNonPlayerAvatar() {
+  var allEntries = document.getElementById('infoHolder').children;
+  for(var i = 0; i < allEntries.length; i++) {
+    var entry = allEntries [i];
+    var avatar = entry.children [0].children[0];
+    if(entry.id.split('-')[8].localeCompare('player') != 0) {
+      avatar.style.display = 'none';
+    }
+  }
+}
+
+window.onload=function() {showOnlyType('player');hideNonPlayerAvatar();};

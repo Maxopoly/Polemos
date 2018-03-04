@@ -2,9 +2,10 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="exp.css">
 <body>
 <head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu|Oldenburg" rel="stylesheet"> 
 <style>
 CSS_PLACEHOLDER
 </style>
@@ -12,20 +13,51 @@ CSS_PLACEHOLDER
 JAVASCRIPT_PLACEHOLDER
 </script>
 </head>
-<select name="navyOp" onchange="orderSel(this);">
-  <option value="AN01">Alphabetic</option>
-  <option value="AN02">MVP (not implemented)</option>
-  <option value="AN03">Kills</option>
-  <option value="AN04">Damage dealt</option>
-  <option value="AN05">Damage taken</option>
-  <option value="AN06">Damage dealt/taken ratio</option>
-</select>
-<h1>Player list </h1>
+ <div class="navbar">
+  <div class="navbar-element"><span class="polemos">Polemos</span></div>
+   <div class="navbar-element">
+   <div class="dropdown">
+    <button class="dropbtn">Sort by
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <div class="dropdown-entry">
+      <button class="orderButton" onClick="sortlist(0);">Name</button> </div>
+   <div class="dropdown-entry">   <button class="orderButton" onClick="sortlist(1);">MVP (not implemented)</button> </div>
+     <div class="dropdown-entry">  <button class="orderButton" onClick="sortlist(2);">Kills</button> </div>
+     <div class="dropdown-entry">  <button class="orderButton" onClick="sortlist(3);">Damage dealt</button> </div>
+      <div class="dropdown-entry"> <button class="orderButton" onClick="sortlist(4);">Damage taken</button> </div>
+      <div class="dropdown-entry"> <button class="orderButton" onClick="sortlist(5);">Damage dealt/taken ratio</button> </div>
+    </div>
+  </div>
+  </div>
+     <div class="navbar-element">
+   <div class="dropdown">
+    <button class="dropbtn">Show
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <div class="dropdown-entry">
+      <button class="orderButton" onClick="showOnlyType('player');">Players</button> </div>
+   <div class="dropdown-entry">   <button class="orderButton" onClick="showOnlyType('group');">Towns total</button> </div>
+    <div class="dropdown-entry">   <button class="orderButton" onClick="showOnlyType('groupAvg');">Towns average</button> </div>
+     <div class="dropdown-entry">  <button class="orderButton" onClick="showOnlyType('side');">Sides total</button> </div>
+     <div class="dropdown-entry">  <button class="orderButton" onClick="showOnlyType('sideAvg');">Sides average</button> </div>
+    </div>
+  </div>
+  </div>
+</div> 
 <div id="infoHolder">
 CONTENT_PLACEHOLDER
 </div>
 
- <footer> </footer>
+ <footer>
+ <div class="player-element-text">Polemos is made by <a href="https://github.com/maxopoly/">Maxopoly</a>. Got any questions, suggestions or complaints? Feel free to send /u/Maxopoly a reddit pm or message Maxopoly#3569 on Discord </div>
+ <div class="player-element-text">
+ Skull icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> and MVP icon made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+ 
+ </div>
+ </footer>
 
 </body>
 
